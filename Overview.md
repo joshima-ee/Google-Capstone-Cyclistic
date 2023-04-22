@@ -30,3 +30,10 @@
 
 ## Data Cleaning
   This case study used the dataset for the year of 2022 as it was the available dataset at the time of download. The dataset initially came as monthly CSV files that contain 5,667,717 rows when combined with 13 columns each.
+
+
+  SQLite with DB Browser was used to clean the data. SQL was used due to the size of the consolidated 12 months worth of data which spreadsheet software may have trouble processing.
+  
+  The CSV files were imported to a SQLite database as individual tables for each month with ride_id as the primary key. The table schema for all months was verified to be identical and all tables were then combined into a single table.
+
+  Each station id was checked if it referenced a unique station name.
