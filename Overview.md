@@ -164,6 +164,7 @@ FROM consolidated_2022;
   There were initially 833,064 null start station IDs and 886,884 end station IDs. To identify the missing station IDs, the latitude and longitude of the stations were combined and cross referenced with complete entries to fill out the missing station IDs.The following columns were created to identify missing station IDs:
 * start_xy		
 * end_xy  
+
   An index utilizing the new columns was also created to improve querying performance
 ```
 SELECT start_lat || '_' || start_lng AS start_xy,
