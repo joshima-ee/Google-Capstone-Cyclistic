@@ -477,6 +477,10 @@ SET trip_id = start_station_id || '_' || end_station_id;
 
   A dashboard summary was created in Tableau to easily visualize the comparative analysis at a glance. It consists of total trips, rider distribution, top 10 bike stations, monthly, weekly, and hourly summary, rideable type popularity, and a density plot of ride length. The dashboard could also be used to conveniently filter and visualize the data by membership, month, and week day. [View the dashboard through this link.](https://public.tableau.com/views/GoogleCapstoneCyclisticDataAnalysis/Dashboard?:language=en-US&:display_count=n&:origin=viz_share_link)
 
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image20.jpg" alt="Tableau Dashboard">
+</p>  
+
 ## Recommendations
 * Consider promotions for 15 minutes or shorter rides as this was approximately the upper quartile of member riders’ ride length which was above the median of casual riders’.
 * Launch marketing campaigns focusing on enticing casual riders to register as an annual member from the months of May until September due to high casual rider population in such months while a marketing campaign to increase rider population during the rest of the months.
