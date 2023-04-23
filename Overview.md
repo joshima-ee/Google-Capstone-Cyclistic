@@ -468,6 +468,8 @@ SET trip_id = start_station_id || '_' || end_station_id;
 
   From the trip analysis, it was concluded that casual rider trips mostly revolved around the start station during both weekdays and weekends with Streeter Dr & Grand Ave being the most popular station. Member riders mostly use Cyclistic to go back and forth to certain stations. However during weekends, trips around Streeter Dr & Grand Ave were also popular for member riders.  
 
+  A dashboard summary was created in Tableau to easily visualize the comparative analysis at a glance. It consists of total trips, rider distribution, top 10 bike stations, monthly, weekly, and hourly summary, rideable type popularity, and a density plot of ride length. The dashboard could also be used to conveniently filter and visualize the data by membership, month, and week day. [View the dashboard through this link.](https://public.tableau.com/views/GoogleCapstoneCyclisticDataAnalysis/Dashboard?:language=en-US&:display_count=n&:origin=viz_share_link)
+
 ## Recommendations
 * Consider promotions for 15 minutes or shorter rides as this was approximately the upper quartile of member riders’ ride length which was above the median of casual riders’.
 * Launch marketing campaigns focusing on enticing casual riders to register as an annual member from the months of May until September while a marketing campaign to increase rider population during the rest of the months.
