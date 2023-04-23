@@ -12,7 +12,7 @@
 * Why would casual riders buy Cyclistic annual memberships?
 * How can Cyclistic use digital media to influence casual riders to become members?
 
-  Lily Moreno assigned the question “How do annual members and casual riders use Cyclistic bikes differently?” to me. This question was the focus of the entire case study.
+  Lily Moreno assigned the question “How do annual members and casual riders use Cyclistic bikes differently?” and asked me to provide 3 recommendations. This question was the focus of the entire case study.
 
 ## Business Task
   Identify differentiating factors of annual members and casual riders based on the latest 12 months of historical trip data and create an effective business plan to convert casual riders into annual members.
@@ -323,4 +323,152 @@ SET trip_id = start_station_id || '_' || end_station_id;
 * Scales
 
   To accommodate color blind people, RColorBrewer palette “Set2” was used in all visualizations in this case study. “Set2” is also a qualitative palette which is ideal for categorical data.
- ![set2 pallete]
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image1.png" alt="Set2 Color Palette">
+</p>
+
+  The main focus of the analysis was to identify differentiating factors of annual members and casual riders and create an effective business plan to convert casual riders into annual members. Casual riders were defined as riders who availed single-ride passes and full-day passes while members were those who availed annual memberships. The following factors were investigated by membership type:
+* Preference in rideable type
+* Ride length
+* Rider population by month
+* Rider population by week
+* Rider population by hour
+* Station popularity
+* Route popularity
+
+  As an initial step, the overall distribution of casual riders and annual riders were identified for the year of 2022.
+  
+  **Trips by Membership Type**
+ <p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image9.jpg" alt="Trips by Membership Type">
+</p> 
+
+  Out of 4,805,405 recorded trips last 2022, 59.4% of them were already by annual members. Next, the popularity of rideable types for casual and member riders were determined.
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image13.png" alt="Popularity of Rideable Types">
+</p>
+
+  Docked bikes were the least popular choice among the bikes, accounting for only 174,852 or 3.6% of the total trips with no member user. Casual members were almost equally distributed among classic and electric bikes. Members were mostly using classic bikes with no interest in docked bikes. From these observations, it is advisable to further study the profitability of docked bikes due to their low utilization and determine if it is still worth keeping. While classic bikes were still the most popular choice, it may be worth investing more in electric bikes as casual members seem to be equally interested in both offerings. 
+ 
+  Ride length and membership type relationship was analyzed next. Through the describe function of psych package, the following statistical summary was obtained.
+
+|| Casual Riders | Members |
+|-----------| ----------- | ----------- |
+| Vars | 1 | 1 |
+| n | 1951053 | 2854352 |
+| mean | 23.06 | 12.45 |
+| SD | 68.08 | 19.02 |
+| median | 13.38 | 8.95 |
+| trimmed | 16.3 | 10.28 |
+| MAD | 10.58 | 6.65 |
+| min | 0.02 | 0.02 |
+| max | 34354.07 | 1499.92 |
+| range | 34354.05 | 1499.9 |
+| skew | 222.9 | 32.36 |
+| kurtosis | 92787.36 | 1763.41 |
+| SE | 0.05 | 0.01 |
+| IQR | 17.27 | 10.17 |
+| Q0.25 | 7.6 | 5.22 |
+| Q0.75 | 24.87| 15.38 |
+
+  To determine the data distribution based on ride length, a box plot was generated. Due to outliers, the box plot was not properly displayed. Casual rider data has the most extreme value with 34,354.07 minutes as the maximum. A violin plot was also created to determine if there was a significant number of trips occurring at these high value regions.The violin plot showed no notable concentrations within the high regions. It was decided to filter out values above the upper whisker of the box plots. Using the Tukey method, the upper whisker of the box plot is calculated as Q0.75 + 1.5 * IQR. For the purpose of visualization, only the higher value from the casual rider box plot of 50.775 was used. Upon inspection, the generated box plot’s upper whisker did not reach the calculated limit. Through ggplot_build in R, it was determined that ggplot2 set the upper limit to 40.817. The limit was then readjusted to 45. A combined box plot and violin plot was generated as the final visualization.   
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image2.png" alt="Initial Ride Length Box Plot">
+</p>
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image5.png" alt="Initial Ride Length Violin Plot">
+</p>
+
+  The outliers for casual riders and member riders were 8.84% and 6% of their population respectively. This meant that the trimmed mean would better represent the average ride length of the riders as it ignores the top and bottom 10% of the dataset. 
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image10.png" alt="Ride Length Box Plot">
+</p>
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image6.png" alt="Ride Length Violin & Box Plot">
+</p>
+
+  From the final plot, it could be concluded that member riders tend to have shorter ride length compared to casual riders as shown by the shorter box plot and shape of the violin plot. There was a small peak for both violin plots at the 2 minute region followed by another peak. The 3rd quartile of member riders was 15.38 minutes, which was above the median of casual riders at 13.38 minutes. This meant that half of casual riders have a ride length similar to 75% of member riders. This trip behavior could mean that half of casual riders use the service in the same way as the member riders and a good marketing campaign may convert these riders into annual members for the company. 
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image17.png" alt="Monthly Summary">
+</p>
+
+  The months of January and February were the worst months last 2022 which may or may not be related to the COVID-19 pandemic. A big spike in casual riders was recorded in May which continued to rise until July. There was a decline starting August and stark drops from November until December. From this historical data, launching marketing campaigns focusing on enticing casual riders to register as an annual member could be effective due to their high number from the months of May until September while a marketing campaign to increase rider population would be more beneficial during the rest of the months.    
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image7.png" alt="Weekly Summary">
+</p>
+
+  The weekly trip summary by membership type revealed that weekday riders were mostly members, while weekend riders were almost split in half. This meant that weekend membership marketing campaigns would affect more casual riders. This plot also implied that members used the service as transportation to work. However, there was a steady amount of casual riders during weekdays, suggesting that there were casual riders who also used the service as a form of work or school  transportation. Having a spike on casual riders during weekends implied that weekend casual riders do biking as a form of leisure. Having different approaches during weekdays and weekends could be a better marketing strategy. A focus on Cyclistic as an alternative to commute during the weekdays and Cyclistic as a leisure activity during the weekends.
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image11.png" alt="Hourly Weekday Summary">
+</p>
+
+  Weekday hourly summary further strengthens the hypothesis that weekday riders used Cyclistic as a form of transportation to work. The plot has 2 significant peaks for both casual and member riders at 8 AM and 5 PM which would be in line for students and working people with a 9 AM to 5PM schedule.
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image8.png" alt="Hourly Weekend Summary">
+</p>
+
+  Both casual and member riders have similar curves during the weekends. From 12 PM until 5PM, casual riders consistently register more trips with a peak at 3 PM. Thus, a campaign during these hours would reach more casual riders.
+  
+  Horizontal bar charts were used to determine and compare which stations registered the most number of trips for each membership type. The bar charts were further categorized into weekdays and weekends as weekly trip summary analysis implied that rider usage was different for weekdays and weekends.
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image19.png" alt="Weekday Casual Rider Station Popularity">
+</p>
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image12.png" alt="Weekday Member Station Popularity">
+</p>
+  
+  For weekday station popularity, Streeter Dr & Grand Ave stood out as the most popular station for casual riders during weekdays with a 14,959 difference with the second most popular station, DuSable Lake Shore Dr & Monroe St. On the other hand, the station popularity for member riders tends to be close with Kingsbury St & Kinzie St leading the results. For similarities, Wells St & Concord Ln and Clark St. & Elm St. both appeared on the casual and member rider’s top 10 charts. For these reasons, it may be worth focusing on Streeter Dr & Grand Ave, Wells St & Concord Ln, and Clark St. & Elm St. during promotional seasons.
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image18.png" alt="Weekend Casual Rider Station Popularity">
+</p>
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image4.png" alt="Weekend Member Station Popularity">
+</p>  
+  
+  For weekend station popularity, Streeter Dr & Grand Ave remained to be the most popular station for casual riders with 10,010 more trips compared to the second place. The station was also popular for member riders during the weekends. The following stations were popular for both casual and member riders during the weekends:
+* Streeter Dr & Grand Ave
+* DuSable Lake Shore Dr & North Blvd
+* Theater on the Lake
+* Wells St & Concord Ln
+* Clark St & Lincoln Ave
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image16.png" alt="Weekend Casual Rider Trip Popularity">
+</p>
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image14.png" alt="Weekend Member Trip Popularity">
+</p> 
+
+  For weekday trip analysis, Streeter Dr & Grand Ave remained to be a popular station for casual riders. Most trips by casual riders were mostly round trips to the starting stations . Member riders on the other hand mostly went back and forth routes, mostly around Ellis Ave & 60th St. The top 8 routes of member riders were simply a round trip of 4 routes.
+  
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image3.png" alt="Weekend Casual Rider Trip Popularity">
+</p>
+
+<p align="center">
+  <img src="https://github.com/joshima-ee/Google-Capstone-Cyclistic/blob/main/images/image15.png" alt="Weekend Member Trip Popularity">
+</p>  
+
+  For weekend trip analysis, casual member trips stayed mostly the same with reduced numbers. The top 6 routes remained the same for member riders but with reduced numbers. Both types of riders had Streeter Dr & Grand Ave - Streeter Dr & Grand Ave on their chart.  
+
+  From the trip analysis, it was concluded that casual rider trips mostly revolved around the start station during both weekdays and weekends with Streeter Dr & Grand Ave being the most popular station. Member riders mostly use Cyclistic to go back and forth to certain stations. However during weekends, trips around Streeter Dr & Grand Ave were also popular for member riders.  
+
+## Recommendations
+* Consider promotions for 15 minutes or shorter rides as this was approximately the upper quartile of member riders’ ride length which was above the median of casual riders’.
+* Launch marketing campaigns focusing on enticing casual riders to register as an annual member from the months of May until September while a marketing campaign to increase rider population during the rest of the months.
+* Consider promotions on stations which are both popular for members and casual riders. Namely : Streeter Dr & Grand Ave, Wells St & Concord Ln, and Clark St. & Elm St.
