@@ -1,5 +1,12 @@
 # How Does a Bike-Share Navigate Speedy Success?
 
+## Abstract
+  This case study for a fictional bike-share company was my Google Data Analytics Capstone project. I was put in a hypothetical situation as a junior data analyst tasked to identify differentiating factors of annual members and casual riders based on the latest 12 months of historical trip data from the cloud through AWS and create an effective business plan to convert casual riders into annual members.
+
+  SQLite with DB Browser was used for data cleaning, R with Rstudio was used for data analysis and visualization, and Tableau was used to create a [dashboard](https://public.tableau.com/views/GoogleCapstoneCyclisticDataAnalysis/Dashboard?:language=en-US&:display_count=n&:origin=viz_share_link). The analysis looked at the rider population by year, month, week, and hour, ride length, rideable type, station, and route popularity among casual riders and members. 
+
+  The analysis concluded that promotions for 15 minutes or shorter trips could be beneficial as a considerable amount of both casual riders and annual members use the service within this time range, launching marketing campaigns focusing on casual rider conversion from May until September to take advantage of high casual riders during such months and consider promotions on stations which are both popular for members and casual riders. 
+
 ## Introduction
   For the Google Data Analytics Capstone, I decided to complete the Cyclistic bike-share analysis case study. I used Google’s data analysis process (ask, prepare, process, analyze, share, and act) as a guideline for this case study. In this scenario, I was a junior data analyst in the Cyclistic marketing analytics team being managed by the director of marketing, Lily Moreno. Cyclistic is a company which launched a bike-share program last 2016 that has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. Bikes can be unlocked and returned to any station within the network at any time.
   
@@ -472,5 +479,5 @@ SET trip_id = start_station_id || '_' || end_station_id;
 
 ## Recommendations
 * Consider promotions for 15 minutes or shorter rides as this was approximately the upper quartile of member riders’ ride length which was above the median of casual riders’.
-* Launch marketing campaigns focusing on enticing casual riders to register as an annual member from the months of May until September while a marketing campaign to increase rider population during the rest of the months.
+* Launch marketing campaigns focusing on enticing casual riders to register as an annual member from the months of May until September due to high casual rider population in such months while a marketing campaign to increase rider population during the rest of the months.
 * Consider promotions on stations which are both popular for members and casual riders. Namely : Streeter Dr & Grand Ave, Wells St & Concord Ln, and Clark St. & Elm St.
